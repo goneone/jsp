@@ -54,6 +54,7 @@
 			<td><%=rs.getString("NAME")%></td>
 			<td><%=rs.getString("MEMBERID")%></td>
 			<td><%=rs.getString("EMAIL")%></td>
+			<td><%=rs.getString("EMAIL")%></td>
 		</tr>
 
 		<%
