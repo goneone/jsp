@@ -13,6 +13,16 @@
 <body>
 	Member 테이블의 내용
 	<table width="100%" border="1">
+	<!-- 
+    JDBC프로그램의 전형적인 실행 순서.
+    1.JDBC 드라이버 로딩
+    2. DB커넥션 구함.
+    3.쿼리 실행을 위한 Statement 객체 생성
+    4.쿼리 실행
+    5.쿼리 실행 결과 사용
+    6. statement 종료
+    7.DB 커넥션 종료 */ -->
+    
 		<tr>
 			<td>이름</td>
 			<td>아이디</td>
@@ -37,12 +47,15 @@
             String query = "select * from MEMBER order by MEMBERID"; 
 
             //2. 데이터베이스 커넥션 생성 -db에 접속을 하는 코드 dbuser에 아이디 dbpass에 비밀번호. drivermanger.getconnection메서드는 db와 연결된 connection 객체를 리턴한다. 
+       	    //drivermanager.getconnection메서드는 db와 연결된 connection 객체를 리턴한다. 
+       	 	//jdbc를 이용해서 데이터베이스를 사용하려면 데이터베이스와 연결된 커넥션을 구해야한다. 
+       	    //getconnection메서드를 이용하면 커녁센을 구할 수 있다.
             conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 			
             
             //3. Statement 생성 - Statement 객체를 사용하면 쿼리(SELECT,INSERT,UPDATE,DELETE)를 실행 할 수 있다.
             stmt = conn.createStatement();
-
+      
             //4. 쿼리실행
             rs = stmt.executeQuery(query);
 
@@ -54,7 +67,7 @@
 			<td><%=rs.getString("NAME")%></td>
 			<td><%=rs.getString("MEMBERID")%></td>
 			<td><%=rs.getString("EMAIL")%></td>
-			<td><%=rs.getString("EMAIL")%></td>
+			<td><%="test" %></td>
 		</tr>
 
 		<%
