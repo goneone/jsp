@@ -6,7 +6,7 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+        
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,26 +23,26 @@
 		
     <%
        request.setCharacterEncoding("utf-8");
-    
-       String memberID = request.getParameter("memberID");
-       String password = request.getParameter("password");
-       String name = request.getParameter("name");
+	    
+	   String memberID = request.getParameter("memberID");
+	   String password = request.getParameter("password");
+	   String name = request.getParameter("name");	
        String email = request.getParameter("email");
        
      //1. JDBC 드라이버 로딩  - JDBC 드라이버를 로딩해야 DB에 연결해서 원하는 작업을 수행할 수 있다.
-      /* Class.forName("com.mysql.jdbc.Driver"); */
-       Class.forName("oracle.jdbc.driver.OracleDriver");
+       Class.forName("com.mysql.jdbc.Driver"); 
+       //Class.forName("oracle.jdbc.driver.OracleDriver");
        
        Connection conn = null;
        PreparedStatement pstmt = null;
   
       
        try{
-          /* String jdbcDriver = "jdbc:mysql://localhost:3306/chap14?"+
-                         "useUnicde=true&characterEncoding=utf8"; */
-          String jdbcDriver = "jdbc:oracle:thin:@localhost:1521:xe";
-          String dbUser = "jspexam";
-          String dbPass = "jsppw";
+           String jdbcDriver = "jdbc:mysql://localhost:3307/opentutorials?"+
+                         "useUnicde=true&characterEncoding=utf8"; 
+          //String jdbcDriver = "jdbc:oracle:thin:@localhost:1521:xe";
+          String dbUser = "root";
+          String dbPass = "root";
           
           
         //2. 데이터베이스 커넥션 생성 -db에 접속을 하는 코드 dbuser에 아이디 dbpass에 비밀번호. 
@@ -50,17 +50,17 @@
          conn=DriverManager.getConnection(jdbcDriver,dbUser,dbPass);
         
         //3. 틀을 미리 생성해 놓고 값을 넣음. 
-         pstmt=conn.prepareStatement("insert into MEMBER values(?,?,?,?)");
+         pstmt=conn.prepareStatement("insert into author values(?,?,?)");
          pstmt.setString(1, memberID);
          pstmt.setString(2, password);
          pstmt.setString(3, name);
-         pstmt.setString(4, email);
+         
          
          //4. 쿼리 실행 
          pstmt.executeUpdate();
     
          //6.보류
-         String query = "select * from MEMBER order by MEMBERID";
+         String query = "select * from author order by MEMBERID";
          Statement stmt = null;
          ResultSet rs = null;
          
