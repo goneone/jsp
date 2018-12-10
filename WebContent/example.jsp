@@ -60,7 +60,7 @@
          pstmt.executeUpdate();
     
          //6.보류
-         String query = "select * from author order by MEMBERID";
+         String query = "select * from  order by MEMBERID";
          Statement stmt = null;
          ResultSet rs = null;
          

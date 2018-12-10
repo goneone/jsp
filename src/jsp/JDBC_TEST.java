@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class JDBC_TEST {
 	public static void main(String[] args) {
 		try {
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307:opentutorials","root", "root");
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/opentutorials?characterEncoding=UTF-8&serverTimezone=UTC" , "root", "root");
 			Statement st = connection.createStatement();
 			ResultSet rs = st.executeQuery("SHOW DATABASES");
 
